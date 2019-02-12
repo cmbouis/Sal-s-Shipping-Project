@@ -1,0 +1,54 @@
+# Ground Shipping Cost Function
+def ground_shipping(weight):
+  if weight <= 2:
+    return (weight * 1.50) + 20.00
+  elif weight <= 6:
+    return (weight * 3.00) + 20.00
+  elif weight <= 10:
+    return (weight * 4.00) + 20.00
+  else:
+    return (weight * 4.75) + 20.00
+    
+# Ground Shipping Cost Function Test
+print(str(ground_shipping(8.4)))
+
+# Premium Ground Shipping Cost Variable
+premium_ground_shipping = 125.00
+
+# Drone Shipping Cost Function
+def drone_shipping(weight):
+  if weight <= 2:
+    return (weight * 4.50)
+  elif weight <= 6:
+    return (weight * 9.00)
+  elif weight <= 10:
+    return (weight * 12.00)
+  else:
+    return (weight * 14.25)
+    
+# Drone Shipping Cost Function Test
+print(str(drone_shipping(1.5)))
+
+# Least Shipping Cost Function
+def least_shipping_cost(weight):
+  if ground_shipping(weight) < drone_shipping(weight) and ground_shipping(weight) < premium_ground_shipping:
+    return "You should ship using ground shipping, it will cost " + str(ground_shipping(weight)) + "."
+  elif drone_shipping(weight) < ground_shipping(weight) and drone_shipping(weight) < premium_ground_shipping:
+    return "You should ship using drone shipping, it will cost " + str(drone_shipping(weight)) + "."
+  elif drone_shipping(weight) == ground_shipping(weight) and drone_shipping(weight) == premium_ground_shipping:
+    return "The price would be " + str(drone_shipping(weight)) + ", regardless of shipping method."
+  elif drone_shipping(weight) == ground_shipping(weight) and drone_shipping(weight) > premium_ground_shipping:
+    return "Both drone shiping or ground shipping are recommended and would cost" + str(drone_shipping(weight)) + "."
+  else:
+    return "You should ship using premium ground shipping, it will cost " + str(premium_ground_shipping) + "."
+    
+# Least Shipping Cost Function Test
+print(str(least_shipping_cost(4.8)))
+print(str(least_shipping_cost(41.5)))
+
+
+# Display:
+# 53.6
+# 6.75
+# You should ship using ground shipping, it will cost 34.4.
+# You should ship using premium ground shipping, it will cost 125.0.
